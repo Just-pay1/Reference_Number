@@ -1,0 +1,50 @@
+import { Billing } from '../models/Billing';
+import { Merchant } from '../models/Merchant';
+
+interface RequestBody{
+    Reference_Number: string
+};
+
+export class MarkBillingAsPaidController {
+  static async markAsPaid(req: RequestBody) {
+    const reference_number  = req.Reference_Number;
+
+    try {
+      const billing = await Billing.findOne({ where: { reference_number } });
+
+      if (!billing) {
+        return {
+                status: 'error',
+                message: 'Billing not found',
+                statusCode: 404 
+            };
+        }
+
+      if (billing.status === 'PAYED') {
+        return {
+                status: 'error',
+                message: 'Billing is already marked as PAYED',
+                statusCode: 400 
+            };
+      }
+          billing.status = 'PAYED';
+          billing.paid_at = new Date();
+    
+          await billing.save();        
+          
+          return {
+              status: 'success',
+              message: 'Billing marked as PAYED',
+              reference_number: billing.reference_number,
+              paid_at: billing.paid_at,
+              statusCode :500
+            };
+    } catch (err: any) {
+      return {
+        status: 'error',
+        message: err.message || 'Server error',
+        statusCode: 500
+      };
+    }
+  }
+}

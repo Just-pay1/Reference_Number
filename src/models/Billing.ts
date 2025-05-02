@@ -12,7 +12,7 @@ export class Billing extends Model {
   public customer_name!: string;
   public customer_mobile!: string;
   public amount!: number;
-  public status!: 'PENDING' | 'EXPIRED' | 'FAILED';
+  public status!: 'PENDING' | 'EXPIRED' | 'FAILED' | 'PAYED';
   public expires_at!: Date;
   public paid_at?: Date;
 
@@ -62,7 +62,7 @@ Billing.init(
       allowNull: false,
     },
     status: {
-      type: DataTypes.ENUM('PENDING', 'EXPIRED', 'FAILED'),
+      type: DataTypes.ENUM('PENDING', 'EXPIRED', 'FAILED','PAYED'),
       defaultValue: 'PENDING',
       allowNull: false,
     },

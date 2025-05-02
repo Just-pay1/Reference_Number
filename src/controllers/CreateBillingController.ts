@@ -34,7 +34,7 @@ export class CreateBillingController {
                 customer_id: data.customer_id,
                 customer_name: data.CustomerName,
                 customer_mobile: data.CustomerMobile,
-                amount: parseFloat((data.Amount * 1.0005).toFixed(2)),
+                amount: data.Amount,
                 status: 'PENDING',
                 expires_at: getDateAfter3Days(),
                 paid_at: null

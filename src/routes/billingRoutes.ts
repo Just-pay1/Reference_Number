@@ -1,36 +1,24 @@
-import express, { Router } from 'express';
+import express from 'express';
+import { CreateBillingController } from '../controllers/CreateBillingController';
 import { GetBillingByReferenceController } from '../controllers/getBillingByReferenceController';
-import { CreateBillingController } from '../controllers/CreateBillingConroller';
-import { validateCreateBilling } from '../middlewares/validateCreateBilling.middleware';
+import { validate } from '../middleware/validateCreateBilling.middleware';
+import { CreateBillingSchema } from '../validators/billingValidator';
+import { MarkBillingAsPaidController } from '../controllers/MarkBillingAsPaidController';
 
 const router = express.Router();
 
-router.get('/:reference', async (req, res, next) => {
-    try {
-        const result = await GetBillingByReferenceController.getBillingByReference(req.params.reference);
-       
-        const statusCode = result.status === 'error' ? 404 : 
-                         result.status === 'expired' ? 410 : 200;
-        
-        res.status(statusCode).json(result);
-    } catch (error) {
-        res.status(500).json({
-            status: 'error',
-            message: 'Internal server error'
-        });
-    }
+router.get('/:reference', async (req, res) => {
+  const result = await GetBillingByReferenceController.getBillingByReference(req.params.reference);
+  res.status(result.statusCode || 200).json(result);
 });
 
-router.post('/', validateCreateBilling, async (req, res, next) => {
-    try {
-        const result = await CreateBillingController.CreateBilling(req.body);
-        res.status(result.status === 'error' ? 400 : 201).json(result);
-    } catch (error) {
-        res.status(500).json({
-            status: 'error',
-            message: 'Internal server error'
-        });
-    }
+router.post('/', validate(CreateBillingSchema), async (req, res) => {
+  const result = await CreateBillingController.CreateBilling(req.body);
+  res.status(result.statusCode || 201).json(result);
+});
+router.post('/pay', async(req,res)=>{
+    const result = await MarkBillingAsPaidController.markAsPaid(req.body);
+    res.status(result.statusCode || 200).json(result);
 });
 
 export default router;
