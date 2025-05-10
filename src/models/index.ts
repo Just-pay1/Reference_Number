@@ -1,8 +1,11 @@
 // src/models/index.ts
-import { Merchant } from './Merchant';
+import { Sequelize } from 'sequelize';
+import { sequelize } from '../config/config';
+
+import { ActiveMerchants } from './Merchant';
 import { Billing } from './Billing';
 
-// Call associate for each model (if any)
-Billing.associate?.();
+// Initialize models
+ActiveMerchants.initialize(sequelize);
 
-export { Merchant, Billing };
+ActiveMerchants.associate?.();

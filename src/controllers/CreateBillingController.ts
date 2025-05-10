@@ -1,10 +1,10 @@
 import { Billing } from '../models/Billing';
-import { Merchant } from '../models/Merchant';
+import { ActiveMerchants } from '../models/Merchant';
 import { generateReferenceNumber } from '../utils/GenerateReferenceNumber';
 import { getDateAfter3Days } from '../utils/getDateAfter3Days';
 
 interface BillingRequest {
-    MerchantCode: string;
+    merchant_id: string;
     OrderId: string;
     customer_id: string;
     CustomerName: string;
@@ -15,14 +15,14 @@ interface BillingRequest {
 export class CreateBillingController {
     static async CreateBilling(data: BillingRequest) {
         try {
-            const merchant = await Merchant.findOne({ 
-                where: { code: data.MerchantCode }
+            const merchant = await ActiveMerchants.findOne({ 
+                where: { merchant_id: data.merchant_id }
             });
             
             if (!merchant) {
                 return {
                     status: 'error',
-                    message: `Merchant with code ${data.MerchantCode} not found`,
+                    message: `Merchant with code ${data.merchant_id} not found`,
                     statusCode: 404  
                 };
             }
@@ -30,7 +30,7 @@ export class CreateBillingController {
             const billing = await Billing.create({
                 reference_number: generateReferenceNumber(),
                 order_number: data.OrderId,
-                merchant_code: data.MerchantCode,
+                merchant_id: data.merchant_id,
                 customer_id: data.customer_id,
                 customer_name: data.CustomerName,
                 customer_mobile: data.CustomerMobile,

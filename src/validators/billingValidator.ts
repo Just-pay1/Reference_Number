@@ -1,7 +1,7 @@
 import Joi from "joi";
 
 export const CreateBillingSchema = Joi.object({
-    MerchantCode: Joi.string().required(),
+    merchant_id: Joi.string().required(),
     OrderId: Joi.string().required(),
     customer_id: Joi.string().optional(),
     CustomerName: Joi.string().required(),

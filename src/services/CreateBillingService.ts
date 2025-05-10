@@ -1,5 +1,5 @@
 import { Billing } from '../models/Billing';
-import { Merchant } from '../models/Merchant';
+import { ActiveMerchants, MerchantAttributes } from '../models/Merchant';
 import { generateReferenceNumber} from '../utils/GenerateReferenceNumber';
 import {  getDateAfter3Days } from '../utils/getDateAfter3Days'
 
@@ -18,7 +18,7 @@ export class createBillingService {
   
   static async createBilling(data: BillingRequest) {
     try {
-      const merchant = await Merchant.findOne({ where: { code: data.merchantCode } });
+      const merchant = await ActiveMerchants.findOne({ where: { merchant_id: data.merchantCode } });
       if (!merchant) {
         throw new Error('Merchant not found');
       }

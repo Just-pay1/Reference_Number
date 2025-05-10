@@ -1,13 +1,12 @@
 // src/models/billing-model.ts
 import { DataTypes, Model } from 'sequelize';
 import { sequelize } from '../config/config';
-import { Merchant } from './Merchant';
 
 export class Billing extends Model {
   public id!: string;
   public reference_number!: string;
   public order_number!: string;
-  public merchant_code!: string;
+  public merchant_id!: string;
   public customer_id?: string;
   public customer_name!: string;
   public customer_mobile!: string;
@@ -15,14 +14,6 @@ export class Billing extends Model {
   public status!: 'PENDING' | 'EXPIRED' | 'FAILED' | 'PAYED';
   public expires_at!: Date;
   public paid_at?: Date;
-
-  static associate() {
-    Billing.belongsTo(Merchant, {
-      foreignKey: 'merchant_code',
-      targetKey: 'code',
-      as: 'merchant',
-    });
-  }
 }
 
 Billing.init(
@@ -41,8 +32,8 @@ Billing.init(
       type: DataTypes.STRING,
       allowNull: false,
     },
-    merchant_code: {
-      type: DataTypes.STRING,
+    merchant_id: {
+      type: DataTypes.UUID,
       allowNull: false,
     },
     customer_id: {
@@ -62,7 +53,7 @@ Billing.init(
       allowNull: false,
     },
     status: {
-      type: DataTypes.ENUM('PENDING', 'EXPIRED', 'FAILED','PAYED'),
+      type: DataTypes.ENUM('PENDING', 'EXPIRED', 'FAILED', 'PAYED'),
       defaultValue: 'PENDING',
       allowNull: false,
     },

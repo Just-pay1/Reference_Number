@@ -1,5 +1,5 @@
 import { Billing } from '../models/Billing'
-import { Merchant } from '../models/Merchant'
+import { ActiveMerchants } from '../models/Merchant'
 
 export class GetBillingByReferenceController {
     static async getBillingByReference(reference: string) {
@@ -19,8 +19,8 @@ export class GetBillingByReferenceController {
                     statusCode: 401
                 }
             }
-            const merchant = await Merchant.findOne({ 
-                where: { code: billing?.merchant_code }
+            const merchant = await ActiveMerchants.findOne({ 
+                where: { merchant_id: billing?.merchant_id }
             });
             const fess = parseFloat((billing.amount * 0.0005).toFixed(2));
             const total = fess + billing.amount;
@@ -29,7 +29,8 @@ export class GetBillingByReferenceController {
                 Billing: {
                   reference_number: billing.reference_number,
                   order_number: billing.order_number,
-                  merchant: merchant?.name,
+                  merchant: merchant?.commercial_name,
+                  merchant_id: merchant?.merchant_id,
                   customer_name: billing.customer_name,
                   customer_mobile: billing.customer_mobile,
                   amount: billing.amount,

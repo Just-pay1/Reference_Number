@@ -1,5 +1,5 @@
 import { Billing } from '../models/Billing';
-import { Merchant } from '../models/Merchant';
+import { ActiveMerchants } from '../models/Merchant';
 
 interface RequestBody{
     Reference_Number: string
@@ -37,7 +37,7 @@ export class MarkBillingAsPaidController {
               message: 'Billing marked as PAYED',
               reference_number: billing.reference_number,
               paid_at: billing.paid_at,
-              statusCode :500
+              statusCode : 201
             };
     } catch (err: any) {
       return {
