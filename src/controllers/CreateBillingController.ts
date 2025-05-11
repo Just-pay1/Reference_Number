@@ -2,7 +2,6 @@ import { Billing } from '../models/Billing';
 import { ActiveMerchants } from '../models/Merchant';
 import { generateReferenceNumber } from '../utils/GenerateReferenceNumber';
 import { getDateAfter3Days } from '../utils/getDateAfter3Days';
-
 interface BillingRequest {
     merchant_id: string;
     OrderId: string;
@@ -14,7 +13,7 @@ interface BillingRequest {
 
 export class CreateBillingController {
     static async CreateBilling(data: BillingRequest) {
-        try {
+        try {      
             const merchant = await ActiveMerchants.findOne({ 
                 where: { merchant_id: data.merchant_id }
             });
