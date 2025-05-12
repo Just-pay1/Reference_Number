@@ -1,4 +1,4 @@
-name: Build and Push Docker Image of REF-NUM
+name: Build and Push Docker Image of ref-num
 
 on:
   push:
@@ -31,12 +31,12 @@ jobs:
              --build-arg PORT="${{ secrets.PORT }}" \
              --build-arg RABBITMQ_URL="${{ secrets.RABBITMQ_URL }}" \
              --build-arg QUEUE_NAME="${{ secrets.QUEUE_NAME }}" \
-             -t REF-NUM .
+             -t ref-num .
 
     - name: Tag Docker image
       run: |
-        docker tag REF-NUM ${{ secrets.ACR_USERNAME }}.azurecr.io/REF-NUM:latest
+        docker tag ref-num ${{ secrets.ACR_USERNAME }}.azurecr.io/ref-num:latest
 
     - name: Push Docker image to Azure Container Registry
       run: |
-        docker push ${{ secrets.ACR_USERNAME }}.azurecr.io/REF-NUM:latest
+        docker push ${{ secrets.ACR_USERNAME }}.azurecr.io/ref-num:latest
