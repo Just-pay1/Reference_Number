@@ -1,0 +1,28 @@
+import Joi from 'joi';
+
+export const merchantSchema = Joi.object({
+  merchant_id: Joi.string().uuid().required(),
+  legal_name: Joi.string().required(),
+  commercial_name: Joi.string().required(),
+  address: Joi.string().required(),
+  commercial_reg_number: Joi.string().required(),
+  license_issue_date: Joi.string().required(), 
+  license_exp_date: Joi.string().required(),
+  tax_id_number: Joi.string().required(),
+  telephone_number: Joi.string().required(),
+  admin_email: Joi.string().email().required(),
+  business_type: Joi.string().required(),
+  bank_name: Joi.string().required(),
+  account_holder_name: Joi.string().required(),
+  account_type: Joi.string().required(),
+  account_number: Joi.string().required(),
+  iban: Joi.string().required(),
+  swift: Joi.string().required(),
+  settlement_time: Joi.string().required(),
+  settlement_period: Joi.string().required(),
+  commission_setup: Joi.string().required(),
+  commission_amount: Joi.number().required(),
+  longitude: Joi.number().required(),
+  latitude: Joi.number().required(),
+  fee_from: Joi.string().required(),
+});
