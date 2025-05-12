@@ -1,0 +1,42 @@
+name: Build and Push Docker Image of ref-num
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  build_and_push:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout repository
+      uses: actions/checkout@v2
+
+    - name: Login to Azure Container Registry
+      uses: azure/docker-login@v1
+      with:
+        login-server: ${{ secrets.ACR_USERNAME }}.azurecr.io
+        username: ${{ secrets.ACR_USERNAME }}
+        password: ${{ secrets.ACR_PASSWORD }}
+
+    - name: Build Docker image
+      run: |
+        docker build  \
+             --build-arg DB_HOST="${{ secrets.DB_HOST }}" \
+             --build-arg DB_PORT="${{ secrets.DB_PORT }}" \
+             --build-arg DB_USER="${{ secrets.DB_USER }}" \
+             --build-arg DB_PASS="${{ secrets.DB_PASS }}" \
+             --build-arg DB_NAME="${{ secrets.DB_NAME }}" \
+             --build-arg PORT="${{ secrets.PORT }}" \
+             --build-arg RABBITMQ_URL="${{ secrets.RABBITMQ_URL }}" \
+             --build-arg QUEUE_NAME="${{ secrets.QUEUE_NAME }}" \
+             -t ref-num .
+
+    - name: Tag Docker image
+      run: |
+        docker tag ref-num ${{ secrets.ACR_USERNAME }}.azurecr.io/ref-num:latest
+
+    - name: Push Docker image to Azure Container Registry
+      run: |
+        docker push ${{ secrets.ACR_USERNAME }}.azurecr.io/ref-num:latest
