@@ -6,6 +6,7 @@ import './models';
 
 const app = express();
 app.use(express.json());
+app.use('/api/billing', billingRoutes); 
 async function initialize() {
   try {
     await sequelize.authenticate();
