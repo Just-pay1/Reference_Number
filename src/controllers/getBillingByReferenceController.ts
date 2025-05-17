@@ -33,6 +33,7 @@ export class GetBillingByReferenceController {
                   merchant_id: merchant?.merchant_id,
                   customer_name: billing.customer_name,
                   customer_mobile: billing.customer_mobile,
+                  status : billing.status,
                   amount: billing.amount,
                   fess: fess,
                   total: total,
