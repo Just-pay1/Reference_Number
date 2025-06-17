@@ -1,6 +1,7 @@
 // src/models/merchant-model.ts
 import { Model, DataTypes, Sequelize } from 'sequelize';
 import { Billing } from './Billing';
+import { allow } from 'joi';
 
 export interface MerchantAttributes {
   merchant_id: string;
@@ -25,6 +26,7 @@ export interface MerchantAttributes {
   commission_amount: number;
   commission_setup: 'Percentage' | 'Fixed';
   longitude: string;
+  service_id: string;
   latitude: string;
   fee_from: 'user' | 'merchant';
 }
@@ -58,6 +60,7 @@ export class ActiveMerchants
   declare commission_setup: 'Percentage' | 'Fixed';
   declare longitude: string;
   declare latitude: string;
+  declare service_id: string;
   declare fee_from: 'user' | 'merchant';
   declare readonly createdAt: Date;
   declare readonly updatedAt: Date;
@@ -71,6 +74,10 @@ export class ActiveMerchants
           allowNull: false,
         },
         legal_name: {
+          type: DataTypes.STRING,
+          allowNull: false,
+        },
+        service_id: {
           type: DataTypes.STRING,
           allowNull: false,
         },

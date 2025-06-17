@@ -25,4 +25,5 @@ export const merchantSchema = Joi.object({
   longitude: Joi.number().required(),
   latitude: Joi.number().required(),
   fee_from: Joi.string().required(),
+  service_id: Joi.string().required(),
 });
