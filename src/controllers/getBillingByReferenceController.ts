@@ -26,7 +26,7 @@ export class GetBillingByReferenceController {
             const total = fess + billing.amount;
             return {
                 status: 'success',
-                Billing: {
+                data: {
                   reference_number: billing.reference_number,
                   order_number: billing.order_number,
                   merchant: merchant?.commercial_name,
