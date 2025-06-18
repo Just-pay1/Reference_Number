@@ -12,6 +12,7 @@ export class Billing extends Model {
   public customer_mobile!: string;
   public amount!: number;
   public status!: 'PENDING' | 'EXPIRED' | 'FAILED' | 'PAYED';
+  public payer_id!: string;
   public expires_at!: Date;
   public paid_at?: Date;
 }
@@ -51,6 +52,10 @@ Billing.init(
     amount: {
       type: DataTypes.FLOAT,
       allowNull: false,
+    },
+    payer_id: {
+      type: DataTypes.STRING,
+      allowNull: true,
     },
     status: {
       type: DataTypes.ENUM('PENDING', 'EXPIRED', 'FAILED', 'PAYED'),

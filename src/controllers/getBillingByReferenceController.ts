@@ -22,8 +22,8 @@ export class GetBillingByReferenceController {
             const merchant = await ActiveMerchants.findOne({ 
                 where: { merchant_id: billing?.merchant_id }
             });
-            const fess = parseFloat((billing.amount * 0.0005).toFixed(2));
-            const total = fess + billing.amount;
+            const fees = parseFloat((billing.amount * 0.0005).toFixed(2));
+            const total = fees + billing.amount;
             return {
                 status: 'success',
                 data: {
@@ -35,7 +35,7 @@ export class GetBillingByReferenceController {
                   customer_mobile: billing.customer_mobile,
                   status : billing.status,
                   amount: billing.amount,
-                  fess: fess,
+                  fee: fees,
                   total: total,
                   expires_at: {
                     date: new Date(billing.expires_at).toISOString().split('T')[0], 

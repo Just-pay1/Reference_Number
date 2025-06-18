@@ -3,12 +3,14 @@ import { ActiveMerchants } from '../models/Merchant';
 
 interface RequestBody{
     Reference_Number: string
-};
+    user_id : string
+}; 
 
 export class MarkBillingAsPaidController {
   static async markAsPaid(req: RequestBody) {
     const reference_number  = req.Reference_Number;
-
+    const payer = req.user_id;
+ 
     try {
       const billing = await Billing.findOne({ where: { reference_number } });
 
@@ -29,6 +31,7 @@ export class MarkBillingAsPaidController {
       }
           billing.status = 'PAYED';
           billing.paid_at = new Date();
+          billing.payer_id = payer;
     
           await billing.save();        
           
