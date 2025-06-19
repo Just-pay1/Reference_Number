@@ -24,6 +24,7 @@ export class GetBillingByReferenceController {
             });
             const fees = parseFloat((billing.amount * 0.0005).toFixed(2));
             const total = fees + billing.amount;
+            const createdAtDate = new Date(billing.expires_at.getTime() - 3 * 24 * 60 * 60 * 1000);
             return {
                 status: 'success',
                 data: {
@@ -37,6 +38,10 @@ export class GetBillingByReferenceController {
                   amount: billing.amount,
                   fee: fees,
                   total: total,
+                  created_at: {
+                    date: createdAtDate.toISOString().split('T')[0],
+                    time: createdAtDate.toTimeString().split(' ')[0],
+                  },
                   expires_at: {
                     date: new Date(billing.expires_at).toISOString().split('T')[0], 
                     time: new Date(billing.expires_at).toTimeString().split(' ')[0]
