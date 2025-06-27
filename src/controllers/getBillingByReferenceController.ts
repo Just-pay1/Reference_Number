@@ -30,14 +30,19 @@ export class GetBillingByReferenceController {
                 data: {
                   reference_number: billing.reference_number,
                   order_number: billing.order_number,
-                  merchant: merchant?.commercial_name,
+                  merchant_name: merchant?.commercial_name,
                   merchant_id: merchant?.merchant_id,
                   customer_name: billing.customer_name,
+                  category: billing.category,
                   customer_mobile: billing.customer_mobile,
                   status : billing.status,
                   amount: billing.amount,
                   fee: fees,
                   total: total,
+                  merchant: {    
+                    longitude: merchant?.longitude,
+                    latitude: merchant?.latitude,
+                 },
                   created_at: {
                     date: createdAtDate.toISOString().split('T')[0],
                     time: createdAtDate.toTimeString().split(' ')[0],
