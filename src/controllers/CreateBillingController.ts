@@ -9,7 +9,6 @@ interface BillingRequest {
     CustomerName: string;
     CustomerMobile: string;
     Amount: number;
-    Category: string;
 }
 
 export class CreateBillingController {
@@ -34,7 +33,6 @@ export class CreateBillingController {
                 customer_id: data.customer_id,
                 customer_name: data.CustomerName,
                 customer_mobile: data.CustomerMobile,
-                category: data.Category,
                 amount: data.Amount,
                 status: 'PENDING',
                 expires_at: getDateAfter3Days(),

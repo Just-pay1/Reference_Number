@@ -5,7 +5,7 @@ export class GetBillingByReferenceController {
     static async getBillingByReference(reference: string) {
         try {
             const billing = await Billing.findOne({ where: { reference_number: reference } });
-            if (!billing) {
+            if (!billing || billing.status === 'PAYED') {
                 return {
                     status: 'error',
                     message: 'Billing not found',
@@ -33,7 +33,7 @@ export class GetBillingByReferenceController {
                   merchant_name: merchant?.commercial_name,
                   merchant_id: merchant?.merchant_id,
                   customer_name: billing.customer_name,
-                  category: billing.category,
+                  category: 'reference_bill',
                   customer_mobile: billing.customer_mobile,
                   status : billing.status,
                   amount: billing.amount,

@@ -11,7 +11,6 @@ export class Billing extends Model {
   public customer_name!: string;
   public customer_mobile!: string;
   public amount!: number;
-  public category!: string;
   public status!: 'PENDING' | 'EXPIRED' | 'FAILED' | 'PAYED';
   public payer_id!: string;
   public expires_at!: Date;
@@ -36,10 +35,6 @@ Billing.init(
     },
     merchant_id: {
       type: DataTypes.UUID,
-      allowNull: false,
-    },
-    category:{
-      type: DataTypes.STRING,
       allowNull: false,
     },
     customer_id: {
