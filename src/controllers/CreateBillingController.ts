@@ -2,6 +2,7 @@ import { Billing } from '../models/Billing';
 import { ActiveMerchants } from '../models/Merchant';
 import { generateReferenceNumber } from '../utils/GenerateReferenceNumber';
 import { getDateAfter3Days } from '../utils/getDateAfter3Days';
+import logger from '../utils/logger';
 interface BillingRequest {
     merchant_id: string;
     OrderId: string;
@@ -48,7 +49,7 @@ export class CreateBillingController {
             };
 
         } catch (ex: any) {
-            console.error('Billing creation error:', ex);
+            logger.error('Billing creation error:', ex);
 
             return {
                 status: 'error',

@@ -3,6 +3,7 @@ import { ActiveMerchants } from '../models/Merchant';
 import { sequelize } from '../config/config';
 import { merchantSchema } from '../validators/ActiveMerchantValidation';
 import dotenv from 'dotenv';
+import logger from '../utils/logger';
 
 dotenv.config();
 
@@ -23,10 +24,10 @@ async function consumeActiveMerchantsQueue() {
           const content = msg.content.toString();
           const merchantData = JSON.parse(content);
 
-          console.log('Received:', merchantData);
+          logger.info(`Received: ${JSON.stringify(merchantData)}`);
           const { error, value } = merchantSchema.validate(merchantData, { abortEarly: false });
           if (error) {
-            console.error('Invalid merchant data:', error.details.map(d => d.message).join(', '));
+            logger.error(`Invalid merchant data: ${error.details.map(d => d.message).join(', ')}`);
             channel.nack(msg, false, false); 
             return;
           }
@@ -35,27 +36,27 @@ async function consumeActiveMerchantsQueue() {
           })
           if (!existing) {
             await ActiveMerchants.create(value);
-            console.log(`Inserted merchant ${value.merchant_id}`);
+            logger.info(`Inserted merchant ${value.merchant_id}`);
           } else {
-            console.log(`Merchant ${value.merchant_id} already exists. Skipping...`);
+            logger.info(`Merchant ${value.merchant_id} already exists. Skipping...`);
           }
           channel.ack(msg);
         } catch (err) {
-          console.error('Error processing message:', err);
+          logger.error('Error processing message:', err);
           channel.nack(msg);
         }
       }
     });
   } catch (error) {
-    console.error('Failed to connect to RabbitMQ:', error);
+    logger.error('Failed to connect to RabbitMQ:', error);
   }
 }
 export async function ConsumeActiveMerchants() {
   try {
     await consumeActiveMerchantsQueue();
-    console.log('RabbitMQ consumer running');
+    logger.info('RabbitMQ consumer running');
   } catch (err) {
-    console.error('RabbitMQ consumer failed to start:', err);
+    logger.error('RabbitMQ consumer failed to start:', err);
   }
 }
 
