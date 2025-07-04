@@ -4,6 +4,7 @@ import { GetBillingByReferenceController } from '../controllers/getBillingByRefe
 import { validate } from '../middleware/validateCreateBilling.middleware';
 import { CreateBillingSchema } from '../validators/billingValidator';
 import { MarkBillingAsPaidController } from '../controllers/MarkBillingAsPaidController';
+import { GetBillingStatusController } from '../controllers/getBillingStatusController';
 
 const router = express.Router();
 
@@ -19,6 +20,10 @@ router.post('/', validate(CreateBillingSchema), async (req, res) => {
 router.post('/pay', async(req,res)=>{
     const result = await MarkBillingAsPaidController.markAsPaid(req.body);
     res.status(result.statusCode || 200).json(result);
+});
+router.get('/status/:reference', async (req, res) => {
+  const result = await GetBillingStatusController.getBillingByReference(req.params.reference);
+  res.status(result.statusCode || 200).json(result);
 });
 
 export default router;

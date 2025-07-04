@@ -2,3 +2,7 @@
 {"level":"info","message":"Database synchronized","timestamp":"2025-07-03T13:11:04.723Z"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2025-07-03T13:11:04.732Z"}
 {"level":"info","message":"RabbitMQ consumer running","timestamp":"2025-07-03T13:11:05.579Z"}
+{"level":"info","message":"Database connection established","timestamp":"2025-07-04T12:50:45.287Z"}
+{"level":"info","message":"Database synchronized","timestamp":"2025-07-04T12:50:57.249Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-07-04T12:50:57.261Z"}
+{"level":"info","message":"RabbitMQ consumer running","timestamp":"2025-07-04T12:50:58.695Z"}
