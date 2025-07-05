@@ -3,12 +3,15 @@ import { ActiveMerchants } from '../models/Merchant';
 import { generateReferenceNumber } from '../utils/GenerateReferenceNumber';
 import { getDateAfter3Days } from '../utils/getDateAfter3Days';
 import logger from '../utils/logger';
+import { sendEmailToQueue } from '../utils/SendMail';
+
 interface BillingRequest {
     merchant_id: string;
     OrderId: string;
     customer_id: string;
     CustomerName: string;
     CustomerMobile: string;
+    CustomerEmail: string;
     Amount: number;
 }
 
@@ -42,6 +45,7 @@ export class CreateBillingController {
                 validate: true
             });
 
+            await sendEmailToQueue(data.CustomerEmail, billing.reference_number);
             return {
                 status: 'success',
                 "Reference Number": billing.reference_number,

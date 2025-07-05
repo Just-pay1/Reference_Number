@@ -6,5 +6,6 @@ export const CreateBillingSchema = Joi.object({
     customer_id: Joi.string().optional(),
     CustomerName: Joi.string().required(),
     CustomerMobile: Joi.string().required(),
+    CustomerEmail: Joi.string().email().required(),
     Amount: Joi.number().positive().required()
 });

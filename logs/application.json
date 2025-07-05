@@ -6,3 +6,29 @@
 {"level":"info","message":"Database synchronized","timestamp":"2025-07-04T12:50:57.249Z"}
 {"level":"info","message":"Server running on port 5000","timestamp":"2025-07-04T12:50:57.261Z"}
 {"level":"info","message":"RabbitMQ consumer running","timestamp":"2025-07-04T12:50:58.695Z"}
+{"level":"info","message":"Database connection established","timestamp":"2025-07-05T12:17:13.309Z"}
+{"level":"info","message":"Database synchronized","timestamp":"2025-07-05T12:17:23.887Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-07-05T12:17:23.897Z"}
+{"level":"info","message":"RabbitMQ consumer running","timestamp":"2025-07-05T12:17:25.201Z"}
+{"level":"info","message":"Database connection established","timestamp":"2025-07-05T12:24:50.245Z"}
+{"level":"info","message":"Database synchronized","timestamp":"2025-07-05T12:25:01.305Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-07-05T12:25:01.312Z"}
+{"level":"info","message":"RabbitMQ consumer running","timestamp":"2025-07-05T12:25:02.134Z"}
+{"level":"info","message":"Database connection established","timestamp":"2025-07-05T12:45:18.852Z"}
+{"level":"info","message":"Database synchronized","timestamp":"2025-07-05T12:45:29.799Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-07-05T12:45:29.805Z"}
+{"level":"info","message":"RabbitMQ consumer running","timestamp":"2025-07-05T12:45:30.582Z"}
+{"code":"EAUTH","command":"API","level":"error","message":"Billing creation error: Missing credentials for \"PLAIN\"","stack":"Error: Missing credentials for \"PLAIN\"\n    at SMTPConnection._formatError (/home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-connection/index.js:809:19)\n    at SMTPConnection.login (/home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-connection/index.js:454:38)\n    at /home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-transport/index.js:272:32\n    at SMTPConnection.<anonymous> (/home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-connection/index.js:215:17)\n    at Object.onceWrapper (node:events:627:28)\n    at SMTPConnection.emit (node:events:513:28)\n    at SMTPConnection._actionEHLO (/home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-connection/index.js:1371:14)\n    at SMTPConnection._processResponse (/home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-connection/index.js:993:20)\n    at SMTPConnection._onData (/home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-connection/index.js:774:14)\n    at TLSSocket.SMTPConnection._onSocketData (/home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-connection/index.js:195:44)","timestamp":"2025-07-05T12:45:54.068Z"}
+{"level":"info","message":"Database connection established","timestamp":"2025-07-05T12:55:46.094Z"}
+{"level":"info","message":"Database synchronized","timestamp":"2025-07-05T12:55:57.302Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-07-05T12:55:57.310Z"}
+{"level":"info","message":"RabbitMQ consumer running","timestamp":"2025-07-05T12:55:58.121Z"}
+{"code":"EAUTH","command":"API","level":"error","message":"Billing creation error: Missing credentials for \"PLAIN\"","stack":"Error: Missing credentials for \"PLAIN\"\n    at SMTPConnection._formatError (/home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-connection/index.js:809:19)\n    at SMTPConnection.login (/home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-connection/index.js:454:38)\n    at /home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-transport/index.js:272:32\n    at SMTPConnection.<anonymous> (/home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-connection/index.js:215:17)\n    at Object.onceWrapper (node:events:627:28)\n    at SMTPConnection.emit (node:events:513:28)\n    at SMTPConnection._actionEHLO (/home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-connection/index.js:1371:14)\n    at SMTPConnection._processResponse (/home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-connection/index.js:993:20)\n    at SMTPConnection._onData (/home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-connection/index.js:774:14)\n    at TLSSocket.SMTPConnection._onSocketData (/home/youssef/Documents/grarduation_project/Reference_Number/node_modules/nodemailer/lib/smtp-connection/index.js:195:44)","timestamp":"2025-07-05T12:56:10.784Z"}
+{"level":"info","message":"Database connection established","timestamp":"2025-07-05T13:06:26.275Z"}
+{"level":"info","message":"Database synchronized","timestamp":"2025-07-05T13:06:37.748Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-07-05T13:06:37.759Z"}
+{"level":"info","message":"RabbitMQ consumer running","timestamp":"2025-07-05T13:06:38.592Z"}
+{"level":"info","message":"Database connection established","timestamp":"2025-07-05T13:18:48.305Z"}
+{"level":"info","message":"Database synchronized","timestamp":"2025-07-05T13:18:59.978Z"}
+{"level":"info","message":"Server running on port 5000","timestamp":"2025-07-05T13:18:59.989Z"}
+{"level":"info","message":"RabbitMQ consumer running","timestamp":"2025-07-05T13:19:00.826Z"}
