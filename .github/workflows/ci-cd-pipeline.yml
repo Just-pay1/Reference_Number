@@ -31,6 +31,7 @@ jobs:
              --build-arg PORT="${{ secrets.PORT }}" \
              --build-arg RABBITMQ_URL="${{ secrets.RABBITMQ_URL }}" \
              --build-arg QUEUE_NAME="${{ secrets.QUEUE_NAME }}" \
+             --build-arg MAILS_QUEUE="${{ secrets.MAILS_QUEUE }}" \
              -t ref-num .
 
     - name: Tag Docker image
