@@ -48,7 +48,7 @@ jobs:
 
     - name: Tag Docker image
       run: |
-        docker tag ewallet ${{ secrets.ACR_USERNAME_AKS }}.azurecr.io/ewallet:latest
+        docker tag ref-num ${{ secrets.ACR_USERNAME_AKS }}.azurecr.io/ref-num:latest
 
 
 
@@ -58,4 +58,4 @@ jobs:
 
     - name: Push Docker image to Azure Container Registry
       run: |
-        docker push ${{ secrets.ACR_USERNAME_AKS }}.azurecr.io/ewallet:latest
+        docker push ${{ secrets.ACR_USERNAME_AKS }}.azurecr.io/ref-num:latest
